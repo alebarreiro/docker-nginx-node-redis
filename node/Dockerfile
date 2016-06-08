@@ -1,5 +1,5 @@
 # Base image ubuntu
-FROM    ubuntu
+FROM    node:argon
 
 # Instalar dependencias
 
