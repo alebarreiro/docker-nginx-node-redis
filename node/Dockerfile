@@ -2,10 +2,12 @@
 FROM    ubuntu
 
 # Instalar dependencias
-RUN apt-get update && \
-    apt-get -y install curl && \
-    curl -sL https://deb.nodesource.com/setup | sudo bash - && \
-    apt-get -y install python build-essential nodejs
+
+RUN apt-get update
+RUN apt-get -y install sudo
+RUN apt-get -y install curl
+RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
+RUN apt-get -y install python build-essential nodejs
 
 # Instalar nodemon
 RUN npm install -g nodemon
