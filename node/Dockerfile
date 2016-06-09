@@ -1,14 +1,16 @@
 # Base image ubuntu
 FROM    node:argon
 
-# Provides cached layer for node_modules
-ADD package.json /tmp/package.json
-RUN cd /tmp && npm install
-RUN mkdir -p /src && cp -a /tmp/node_modules /src/
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-# Working directory
-WORKDIR /src
-ADD . /src
+# Install all dependencies
+COPY package.json /usr/src/app/
+RUN npm install
+
+# Bundle app source code
+COPY . /usr/src/app
 
 # Expose port
 EXPOSE  8080
