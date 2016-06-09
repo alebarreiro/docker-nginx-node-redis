@@ -2,7 +2,12 @@ machine:
     services:
         - docker
 
+dependencies:
+    override:
+        - docker info
+        - cd node; docker build -t circleci/node .
+
 test:
     override:
-        - cd node; docker build .
+        - docker run -d -p 8080:8080 circleci/node
         - cd node; mocha
